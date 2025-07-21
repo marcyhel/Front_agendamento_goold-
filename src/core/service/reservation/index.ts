@@ -1,10 +1,7 @@
 import api from "@/core/lib/api";
+import { AvailableSlotsResponse, CreateReservationModel, CreateReservationResponse } from "@/core/models/create_reservation.model";
 import { ReservationListResponse, ReservationFilters } from "@/core/models/reservation.model";
-import {
-	CreateReservationModel,
-	CreateReservationResponse,
-	AvailableSlotsResponse,
-} from "@/models/create-reservation.model";
+
 
 export async function getReservationsService(
 	filters: ReservationFilters = {}
