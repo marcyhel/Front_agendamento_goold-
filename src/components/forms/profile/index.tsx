@@ -15,6 +15,7 @@ import {
 } from "@/core/models/profile.model";
 import { getCepService } from "@/core/service/cep";
 import { getProfileService, updateProfileService } from "@/core/service/profile";
+import Image from "next/image";
 
 export default function ProfileForm() {
 	const [showPassword, setShowPassword] = useState(false);
@@ -161,11 +162,16 @@ export default function ProfileForm() {
 
 	if (loadingProfile) {
 		return (
-			<div className="flex items-center justify-center h-full">
-				<div className="flex items-center gap-2">
-					<span className="w-6 h-6 border-2 border-t-2 border-t-black border-gray-300 rounded-full animate-spin"></span>
-					<span>Carregando perfil...</span>
-				</div>
+			<div className="flex flex-col   justify-center items-center">
+				<Image
+					src="/logo.png"
+					alt="Brand Logo"
+					width={40}
+					height={40}
+					priority
+				/>
+				<div className="mt-4">Carregando</div>
+
 			</div>
 		);
 	}
