@@ -224,7 +224,7 @@ export function CreateReservationForm({
             onValueChange={(value) => form.setValue("time", value)}
             disabled={!selectedDate || !selectedRoomId || loadingSlots}
           >
-            <SelectTrigger className="w-full py-5">
+            <SelectTrigger className="w-full py-5 ">
               <Clock className="mr-2 h-4 w-4" />
               <SelectValue placeholder="Selecione um horário" />
             </SelectTrigger>
@@ -258,7 +258,7 @@ export function CreateReservationForm({
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-black hover:bg-gray-800 text-white"
+          className="w-full bg-black hover:bg-gray-800 text-white cursor-pointer "
         >
           {isLoading ? "Confirmando Agendamento..." : "Confirmar Agendamento"}
         </Button>

@@ -115,7 +115,7 @@ const Login: React.FC<LoginProps> = () => {
 				disabled={loading || !emailForm.formState.isValid}
 			>
 				{loading && (
-					<span className="w-4 h-4 border-2 border-t-white border-blue-500 rounded-full animate-spin"></span>
+					<span className="w-4 h-4 border-2 border-t-white border-gray-500 rounded-full animate-spin"></span>
 				)}
 				Acessar conta
 			</Button>
@@ -175,7 +175,7 @@ const Login: React.FC<LoginProps> = () => {
 				disabled={loading || !passwordForm.formState.isValid}
 			>
 				{loading && (
-					<span className="w-4 h-4 border-2 border-t-white border-blue-500 rounded-full animate-spin"></span>
+					<span className="w-4 h-4 border-2 border-t-white border-gray-500 rounded-full animate-spin"></span>
 				)}
 				Acessar conta
 			</Button>

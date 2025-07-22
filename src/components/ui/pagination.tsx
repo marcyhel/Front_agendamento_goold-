@@ -131,7 +131,7 @@ export function Pagination({
 										onClick={() => onPageChange(page as number)}
 										disabled={isLoading}
 										className={cn(
-											"min-w-[36px] min-h-10",
+											"min-w-[36px] min-h-10 cursor-pointer ",
 											buttonSizeClasses[size]
 										)}
 									>

@@ -40,6 +40,14 @@ export default function Sidebar({ children }: SidebarProps) {
 
 	const getMenuItems = (currentUser: UserModel): NavigationItem[] => [
 		{
+			label: "Agendamentos",
+			href: "/reservation",
+			icon: <CalendarDays size={20} />,
+			show:
+				currentUser.role === "admin" ||
+				currentUser.canManageScheduling === true,
+		},
+		{
 			label: "Minha conta",
 			href: "/profile",
 			icon: <User size={20} />,
@@ -58,14 +66,7 @@ export default function Sidebar({ children }: SidebarProps) {
 			icon: <Users size={20} />,
 			show: currentUser.role === "admin",
 		},
-		{
-			label: "Agendamentos",
-			href: "/reservation",
-			icon: <CalendarDays size={20} />,
-			show:
-				currentUser.role === "admin" ||
-				currentUser.canManageScheduling === true,
-		},
+
 	];
 
 	const navigate = (href: string) => {
