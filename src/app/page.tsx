@@ -1,7 +1,18 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/core/lib/auth_config"; // ajuste o caminho se necessário
+
 import LoginForm from "@/components/forms/auth";
 import GuestHeader from "@/components/header/header_unautorize";
 
-const LandingPage = () => {
+const LandingPage = async () => {
+  const session = await getServerSession(authOptions);
+
+
+  if (session) {
+    redirect("/reservation");
+  }
+
   return (
     <section className="flex flex-col w-full h-full">
       <GuestHeader />
@@ -15,6 +26,6 @@ const LandingPage = () => {
       </main>
     </section>
   );
-}
+};
 
 export default LandingPage;

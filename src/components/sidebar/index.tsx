@@ -34,6 +34,7 @@ type NavigationItem = {
 
 export default function Sidebar({ children }: SidebarProps) {
 	const { user, isAuthenticated, isLoading } = useUser();
+	const [isOpen, setIsOpen] = useState(false);
 	const path = usePathname();
 	const router = useRouter();
 
@@ -75,9 +76,16 @@ export default function Sidebar({ children }: SidebarProps) {
 
 	if (isLoading) {
 		return (
-			<div className="flex items-center justify-center h-full">
-				<div className="animate-spin h-8 w-8 rounded-full border-t-2 border-b-2 border-gray-900" />
-				<span className="ml-2 text-gray-600">Carregando...</span>
+			<div className="flex flex-col bg-[#F6F4F1] w-screen h-screen justify-center items-center">
+				<Image
+					src="/logo.png"
+					alt="Brand Logo"
+					width={40}
+					height={40}
+					priority
+				/>
+				<div className="mt-4">Carregando</div>
+
 			</div>
 		);
 	}
@@ -85,7 +93,7 @@ export default function Sidebar({ children }: SidebarProps) {
 	if (!isAuthenticated || !user) return null;
 
 	const menu = getMenuItems(user).filter((item) => item.show);
-	const [isOpen, setIsOpen] = useState(false);
+
 	return (
 		<div className="flex w-full h-full">
 			<aside className="w-64 h-full border-r border-[#D7D7D7] flex flex-col">
