@@ -240,7 +240,7 @@ export default function ProfileForm() {
 						type="emails"
 						id="emails"
 						placeholder="E-mail"
-
+						{...form.register("email")}
 						className="p-2 border rounded"
 						disabled
 					/>
