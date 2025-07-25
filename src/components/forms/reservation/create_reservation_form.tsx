@@ -178,7 +178,11 @@ export function CreateReservationForm({
                 onSelect={handleDateSelect}
                 initialFocus
                 locale={ptBR}
-                disabled={(date) => date < new Date()}
+                disabled={(date) => {
+                  const today = new Date();
+                  today.setHours(0, 0, 0, 0); // Zera hora para comparação correta
+                  return date < today; // desabilita ontem e datas anteriores
+                }}
               />
             </PopoverContent>
           </Popover>

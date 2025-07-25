@@ -16,6 +16,7 @@ import {
 import { getCepService } from "@/core/service/cep";
 import { getProfileService, updateProfileService } from "@/core/service/profile";
 import Image from "next/image";
+import { useProfile } from "@/context/profile.context";
 
 export default function ProfileForm() {
 	const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +24,7 @@ export default function ProfileForm() {
 	const [loadingCep, setLoadingCep] = useState(false);
 	const [loadingProfile, setLoadingProfile] = useState(true);
 	const [cepFound, setCepFound] = useState(false);
-
+	const { refreshProfile } = useProfile();
 	const form = useForm<ProfileSchema>({
 		resolver: zodResolver(profileSchema),
 		defaultValues: {
@@ -50,7 +51,7 @@ export default function ProfileForm() {
 				form.setValue("name", userProfile.name);
 				form.setValue("lastName", userProfile.lastName);
 				form.setValue("email", userProfile.email);
-				form.setValue("cep", userProfile.address.cep);
+				form.setValue("cep", formatCep(userProfile.address.cep));
 				form.setValue("street", userProfile.address.street);
 				form.setValue("number", userProfile.address.number);
 				form.setValue("neighborhood", userProfile.address.neighborhood);
@@ -136,6 +137,9 @@ export default function ProfileForm() {
 			}
 
 			await updateProfileService(updateData);
+
+
+			await refreshProfile();
 			toast.message("Perfil atualizado com sucesso!");
 		} catch (error: unknown) {
 			const errorMessage =
@@ -304,6 +308,7 @@ export default function ProfileForm() {
 						className="p-2 border rounded"
 						maxLength={9}
 					/>
+
 					{loadingCep && (
 						<p className="text-blue-500 text-sm">Buscando CEP...</p>
 					)}

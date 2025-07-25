@@ -21,6 +21,8 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { useProfile } from "@/context/profile.context";
+
 type SidebarProps = {
 	children: ReactNode;
 };
@@ -35,8 +37,12 @@ type NavigationItem = {
 export default function Sidebar({ children }: SidebarProps) {
 	const { user, isAuthenticated, isLoading } = useUser();
 	const [isOpen, setIsOpen] = useState(false);
+
 	const path = usePathname();
 	const router = useRouter();
+	const { profile } = useProfile();
+	console.log(user)
+
 
 	const getMenuItems = (currentUser: UserModel): NavigationItem[] => [
 		{
@@ -131,8 +137,10 @@ export default function Sidebar({ children }: SidebarProps) {
 					<DropdownMenuTrigger asChild>
 						<div className="border-t border-[#D7D7D7] py-2 px-4 flex justify-between items-center cursor-pointer">
 							<div className="mb-3 flex flex-col items-start">
-								<p className="text-sm font-medium">
-									{user.name} {user.lastName}
+								<p className="text-sm font-medium max-w-[200px] overflow-ellipsis truncate">
+									{profile?.userProfile.name} {profile?.userProfile.lastName}
+
+
 								</p>
 								<p className="text-xs">
 									{user.role === "admin" ? "Administrador" : "Cliente"}
@@ -146,10 +154,10 @@ export default function Sidebar({ children }: SidebarProps) {
 					</DropdownMenuTrigger>
 
 					<DropdownMenuContent className="w-[250px]">
-						<DropdownMenuItem>
+						<DropdownMenuItem className="w-full">
 							<LogoutButton className="w-full text-sm cursor-pointer text-black bg-opacity-0 hover:bg-opacity-0 shadow-none" />
 						</DropdownMenuItem>
-						<DropdownMenuItem className="cursor-pointer">Configuração</DropdownMenuItem>
+
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</aside>

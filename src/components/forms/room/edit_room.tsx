@@ -49,7 +49,7 @@ export function EditRoom({ setIsCreating, close }: Props) {
     defaultValues: {
       name: "1",
       startTime: "08:00",
-      endTime: "18:00",
+      endTime: "22:00",
       time_block: 30,
     },
   });
@@ -89,11 +89,11 @@ export function EditRoom({ setIsCreating, close }: Props) {
         form.reset({
           name: selectedRoom.name || "1",
           startTime: selectedRoom.startTime || "08:00",
-          endTime: selectedRoom.endTime || "18:00",
+          endTime: selectedRoom.endTime || "22:00",
           time_block: selectedRoom.time_block || 30,
         });
         setStartTime(selectedRoom.startTime || "08:00");
-        setEndTime(selectedRoom.endTime || "18:00");
+        setEndTime(selectedRoom.endTime || "22:00");
       }
     }
   }, [selectedRoomId, rooms, form, setStartTime, setEndTime]);

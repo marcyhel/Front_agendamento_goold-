@@ -53,7 +53,10 @@ const LayoutRoot = ({
 				].join(" ")}
 			>
 				<AuthProvider>
+
 					{children}
+
+
 					<Toaster richColors />
 				</AuthProvider>
 			</body>

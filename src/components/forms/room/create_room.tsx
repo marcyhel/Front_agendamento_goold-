@@ -34,7 +34,7 @@ export function CreateRoom({ setIsCreating, close }: Props) {
 		defaultValues: {
 			name: "",
 			startTime: "08:00",
-			endTime: "18:00",
+			endTime: "22:00",
 			time_block: 30,
 		},
 	});

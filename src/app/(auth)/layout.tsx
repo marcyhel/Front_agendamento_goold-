@@ -1,4 +1,5 @@
 import Sidebar from "@/components/sidebar";
+import { ProfileProvider } from "@/context/profile.context";
 
 export default function Layout({
   children,
@@ -7,9 +8,12 @@ export default function Layout({
 }>) {
   return (
     <div className="box-border flex flex-col w-full h-full overflow-hidden">
-      <Sidebar>
-        <div className=" overflow-y-auto">{children}</div>
-      </Sidebar>
+      <ProfileProvider>
+        <Sidebar>
+          <div className=" overflow-y-auto">{children}</div>
+        </Sidebar>
+      </ProfileProvider>
+
     </div>
   );
 }

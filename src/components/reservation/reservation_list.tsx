@@ -83,7 +83,7 @@ export function ReservationList({
         onReservationUpdate(reservationId, result.status);
         toast.message("Agendamento cancelado com sucesso!");
       } else {
-        toast.message(result.error || "Erro ao cancelar agendamento");
+        toast.message("Erro ao cancelar agendamento");
       }
     } catch (error) {
       console.error("Erro ao cancelar agendamento:", error);
@@ -101,12 +101,12 @@ export function ReservationList({
 
     try {
       const result = await confirmReservationAction(reservationId);
-
+      console.log(result)
       if (result.success && result.status) {
         onReservationUpdate(reservationId, result.status);
         toast.message("Agendamento confirmado com sucesso!");
       } else {
-        toast.message(result.error || "Erro ao confirmar agendamento");
+        toast.message("Erro ao confirmar agendamento");
       }
     } catch (error) {
       console.error("Erro ao confirmar agendamento:", error);
@@ -203,6 +203,7 @@ export function ReservationList({
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     <div className="flex gap-2 text-[14px] text-black font-normal">
                       <div className="">
+
                         {formatInTimeZone(
                           new Date(reservation.date),
                           "UTC",
@@ -216,7 +217,7 @@ export function ReservationList({
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <p className="text-black font-medium text-[14px]">
+                    <p className="text-black font-medium text-[14px] max-w-[250px] overflow-ellipsis truncate">
                       {reservation.user.name} {reservation.user.lastName}
                     </p>
                     <p className="text-black font-normal text-[13px]">
@@ -238,7 +239,7 @@ export function ReservationList({
                       {status.label}
                     </span>
                   </td>
-                  <td className="px-2 justify-center py-4 whitespace-nowrap gap-4 flex">
+                  <td className="px-6 justify-start  py-4 whitespace-nowrap gap-4 flex">
                     {(reservation.status === "pending" ||
                       reservation.status === "confirmed") && (
                         <Button
